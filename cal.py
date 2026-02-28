@@ -5,7 +5,7 @@ def show_History():
     file = open(HISTORY_FILE, 'r')
     lines = file.readlines()
     if len(lines) == 0:
-        print("ther is not found in the txt file")
+        print("There is not history found in the txt file")
     else:
         for line in reversed(lines):
             print(line.strip())    #strip() display lines one by  one
@@ -14,7 +14,7 @@ def show_History():
 def clear_history():
     file = open(HISTORY_FILE , 'w')
     file.close()
-    print("history cleard")
+    print("History cleard")
 
 def save_to_history(equation, result):
     file = open(HISTORY_FILE, 'a')
@@ -24,7 +24,7 @@ def save_to_history(equation, result):
 def calculation(user_input):
     parts = user_input.split()
     if len(parts) != 3:
-        print("Invalid input !, use format")
+        print("Invalid input !, use format like 2 + 2")
         return
     
     num1 = float(parts[0])
@@ -39,13 +39,18 @@ def calculation(user_input):
         result = num1 * num2
     elif op == "/":
         if num2 == "0":
-            print("invalid input")
+            print("Invalid input!, 0 cannot divide by any number")
             return
         result = num1 / num2
     elif op == "%":
         if num2 == "0":
-            print("invalid input")
+            print("Invalid input")
             return
+    elif op == "**":
+        if num2 == "0":
+            print(1)
+        else:
+            result = num1 ** num2
     else:
         print("Invalid operator")
     
@@ -55,12 +60,12 @@ def calculation(user_input):
     save_to_history(user_input, result)
 
 def main():
-    print("Simple calculation")
+    print("Simple calculator")
     while True:
-        user_input = input("Enter calculation or command ").strip().lower()
+        user_input = input("Enter calculation or command: ").strip().lower()
         # add multiple inputs
         if user_input == "exit":
-            print("Goodbye")
+            print("Goodbye , Thanks for using this")
             break
         elif user_input == "clear":
             clear_history()
@@ -71,3 +76,4 @@ def main():
 
 
 main()
+
